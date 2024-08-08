@@ -1,13 +1,16 @@
 import NeuroPy as npy
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from utils import Prepare
 
 
 """
     Read and preprocess the data
 """
-data = pd.read_csv("IRIS.csv");
+raw_data = pd.read_csv("IRIS.csv")
+data = Prepare().shuffle(raw_data)
+
+
 def convert_label_to_integer(column):
     unique_labels = column.unique()
     label_mapping = {label: i+1 for i, label in enumerate(unique_labels)}
@@ -35,17 +38,17 @@ labeld_data	= onehot_encoded.tolist()
 """
     Create and train the model
 """
-hidden_layers = [(3, "sigmoid"), (9, "sigmoid"), (9, "sigmoid"), (3, "sigmoid")]
+hidden_layers = [(13, "sigmoid"), (5, "sigmoid"), (17, "sigmoid"), (3, "sigmoid")]
 model = npy.CreateNetwork(
 		input_size = 4,  
         layer_size_vectors = hidden_layers, 
-		learning_rate = -0.01, 
+		learning_rate = -0.0001, 
 		weight_initializer = "simple", 
 		regularization_method = "none", 
 		l2_penalty = 0.01
 	)
 
-result = model.fit(sample_data, labeld_data, 10, 1)
+result = model.fit(sample_data, labeld_data, 200, 1)
 
 
 

@@ -1,0 +1,1 @@
+Instead of using fast libraries like scikitlearn, numpy, and other libraries for machine learning. I created this code to look inside the blackbox of some of machine learniong and AI algorithms. The current model available is the good old sigmoid function but as I study more about neural networks and AI im planning to expand this. 

@@ -1,12 +1,12 @@
 import NeuroPy as npy
-import pprint
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 
 
 
-
+"""
+    Read and preprocess the data
+"""
 data = pd.read_csv("IRIS.csv");
 def convert_label_to_integer(column):
     unique_labels = column.unique()
@@ -32,9 +32,9 @@ labeld_data	= onehot_encoded.tolist()
 
 
 
-
-
-
+"""
+    Create and train the model
+"""
 hidden_layers = [(3, "sigmoid"), (9, "sigmoid"), (9, "sigmoid"), (3, "sigmoid")]
 model = npy.CreateNetwork(
 		input_size = 4,  
@@ -50,9 +50,9 @@ result = model.fit(sample_data, labeld_data, 10, 1)
 
 
 
-
-
-
+"""
+    Plot the mean square error
+"""
 x = [i for i in range(len(model.mean_square_error_log))]
 y = model.mean_square_error_log
 plt.title("Mean square error") 
